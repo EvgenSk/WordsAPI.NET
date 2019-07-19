@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordsAPI.NET.Core", "WordsA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordsAPI.NET.HostingExtensions", "WordsAPI.NET.HostingExtensions\WordsAPI.NET.HostingExtensions.csproj", "{2E1B7F2D-F1C9-4167-A98C-8877632B3CCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsAPI.NET.OrleansHostingExtensions", "WordsAPI.NET.OrleansHostingExtensions\WordsAPI.NET.OrleansHostingExtensions.csproj", "{A8FF27EA-71C2-45BF-B89B-10A3710FBDA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordsAPI.NET.OrleansHostingExtensions", "WordsAPI.NET.OrleansHostingExtensions\WordsAPI.NET.OrleansHostingExtensions.csproj", "{A8FF27EA-71C2-45BF-B89B-10A3710FBDA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsAPI.NET.WebHostingExtensions", "WordsAPI.NET.WebHostingExtensions\WordsAPI.NET.WebHostingExtensions.csproj", "{EE23A69D-0772-472D-9D60-B911FBEED56D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,18 @@ Global
 		{A8FF27EA-71C2-45BF-B89B-10A3710FBDA2}.Release|x64.Build.0 = Release|Any CPU
 		{A8FF27EA-71C2-45BF-B89B-10A3710FBDA2}.Release|x86.ActiveCfg = Release|Any CPU
 		{A8FF27EA-71C2-45BF-B89B-10A3710FBDA2}.Release|x86.Build.0 = Release|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Debug|x64.Build.0 = Debug|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Debug|x86.Build.0 = Debug|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Release|x64.ActiveCfg = Release|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Release|x64.Build.0 = Release|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Release|x86.ActiveCfg = Release|Any CPU
+		{EE23A69D-0772-472D-9D60-B911FBEED56D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

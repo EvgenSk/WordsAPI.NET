@@ -12,10 +12,10 @@ namespace Orleans.Hosting
 {
 	public static class OrleansHostingExtensions
 	{
-		public static ISiloHostBuilder AddWordsAPIClient(this ISiloHostBuilder builder, Action<WordsAPIOptions> configureOptions) =>
+		public static ISiloHostBuilder AddWordsAPIClient(this ISiloHostBuilder builder, Action<WordsAPIOptions> configureOptions = null) =>
 			builder.AddWordsAPIClient(ProviderConstants.DEFAULT_STORAGE_PROVIDER_NAME, configureOptions);
 
-		public static ISiloHostBuilder AddWordsAPIClient(this ISiloHostBuilder builder, string name, Action<WordsAPIOptions> configureOptions) =>
+		public static ISiloHostBuilder AddWordsAPIClient(this ISiloHostBuilder builder, string name, Action<WordsAPIOptions> configureOptions = null) =>
 			builder.ConfigureServices(s => s.AddWordsAPIClient(name, ob => ob.Configure(configureOptions)));
 
 		public static IServiceCollection AddWordsAPIClient(this IServiceCollection services, string name, Action<OptionsBuilder<WordsAPIOptions>> configureOptions = null)

@@ -9,7 +9,7 @@ namespace Microsoft.Extensions.Hosting
 {
 	public static class HostingExtensions
 	{
-		public static IHostBuilder AddWordsAPIClient(this IHostBuilder hostBuilder, Action<WordsAPIOptions> configureOptions) =>
+		public static IHostBuilder AddWordsAPIClient(this IHostBuilder hostBuilder, Action<WordsAPIOptions> configureOptions = null) =>
 			hostBuilder.ConfigureServices(s => s.AddWordsAPIClient(ob => ob.Configure(configureOptions)));
 
 		public static IServiceCollection AddWordsAPIClient(this IServiceCollection services, Action<OptionsBuilder<WordsAPIOptions>> configureOptions = null)
