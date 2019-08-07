@@ -15,11 +15,12 @@ namespace WordsAPI.NET.Core
         public WordsAPIHttpService(HttpClient client, WordsAPIOptions options)
         {
             client.BaseAddress = new Uri(options.BaseURL);
-            client.DefaultRequestHeaders.Add("X-Mashape-Key", options.MashapeKey);
-            client.DefaultRequestHeaders.Add("X-Mashape-Host", options.MashapeHost);
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Host", options.RapidAPIHost);
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", options.RapidAPIKey);
 
             Client = client;
         }
+
         public Task<string> GetWordInfoRawString(Endpoint endpoint, string word) =>
             Client.GetStringAsync(GetUriString(endpoint, word));
 
