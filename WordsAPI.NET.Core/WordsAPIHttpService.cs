@@ -44,7 +44,7 @@ namespace WordsAPI.NET.Core
         Frequency
     }
 
-	public class WordsAPIHttpServiceFactory
+	public static class WordsAPIHttpServiceFactory
 	{
 		public static WordsAPIHttpService Create(IServiceProvider services)
 		{
