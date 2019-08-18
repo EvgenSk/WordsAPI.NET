@@ -12,11 +12,10 @@ namespace Orleans.Hosting
 {
 	public static class OrleansHostingExtensions
 	{
-		public static ISiloHostBuilder AddWordsAPIClient(this ISiloHostBuilder builder, Action<WordsAPIOptions> configureOptions = null) =>
-			builder.AddWordsAPIClient(ProviderConstants.DEFAULT_STORAGE_PROVIDER_NAME, configureOptions);
+        private static readonly Action<WordsAPIOptions> dummy = (_) => { };
 
 		public static ISiloHostBuilder AddWordsAPIClient(this ISiloHostBuilder builder, string name, Action<WordsAPIOptions> configureOptions = null) =>
-			builder.ConfigureServices(s => s.AddWordsAPIClient(name, ob => ob.Configure(configureOptions)));
+			builder.ConfigureServices(s => s.AddWordsAPIClient(name, ob => ob.Configure(configureOptions ?? dummy)));
 
 		public static IServiceCollection AddWordsAPIClient(this IServiceCollection services, string name, Action<OptionsBuilder<WordsAPIOptions>> configureOptions = null)
 		{
@@ -26,5 +25,14 @@ namespace Orleans.Hosting
 				.ConfigureNamedOptionForLogging<WordsAPIOptions>(name)
 				.AddSingletonNamedService(name, WordsAPIClientFactory.Create);
 		}
-	}
+
+        public static ISiloHostBuilder AddWordsAPIClient(this ISiloHostBuilder builder, Action<WordsAPIOptions> configureOptions = null) =>
+            builder.ConfigureServices(s => s.AddWordsAPIClient(ob => ob.Configure(configureOptions ?? dummy)));
+
+        public static IServiceCollection AddWordsAPIClient(this IServiceCollection services, Action<OptionsBuilder<WordsAPIOptions>> configureOptions = null)
+        {
+            configureOptions?.Invoke(services.AddOptions<WordsAPIOptions>());
+            return services.AddSingleton(WordsAPIClientFactory.Create);
+        }
+    }
 }
