@@ -10,15 +10,13 @@ namespace WordsAPI.NET.Core
 {
     public class WordsAPIHttpService
     {
-        public HttpClient Client { get; }
+        public HttpClient Client { get; } = new HttpClient();
 
-        public WordsAPIHttpService(HttpClient client, WordsAPIOptions options)
+        public WordsAPIHttpService(WordsAPIOptions options)
         {
-            client.BaseAddress = new Uri(options.BaseURL);
-            client.DefaultRequestHeaders.Add("X-RapidAPI-Host", options.RapidAPIHost);
-            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", options.RapidAPIKey);
-
-            Client = client;
+            Client.BaseAddress = new Uri(options.BaseURL);
+            Client.DefaultRequestHeaders.Add("X-RapidAPI-Host", options.RapidAPIHost);
+            Client.DefaultRequestHeaders.Add("X-RapidAPI-Key", options.RapidAPIKey);
         }
 
         public Task<string> GetWordInfoRawString(Endpoint endpoint, string word) =>
@@ -49,15 +47,13 @@ namespace WordsAPI.NET.Core
 		public static WordsAPIHttpService Create(IServiceProvider services)
 		{
 			IOptionsSnapshot<WordsAPIOptions> optionsSnapshot = services.GetRequiredService<IOptionsSnapshot<WordsAPIOptions>>();
-            HttpClient httpClient = services.GetRequiredService<HttpClient>();
-			return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, httpClient, optionsSnapshot);
+			return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, optionsSnapshot);
 		}
 
 		public static WordsAPIHttpService Create(IServiceProvider services, string name)
 		{
 			IOptionsSnapshot<WordsAPIOptions> optionsSnapshot = services.GetRequiredService<IOptionsSnapshot<WordsAPIOptions>>();
-            HttpClient httpClient = services.GetRequiredService<HttpClient>();
-            return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, httpClient, optionsSnapshot.Get(name));
+            return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, optionsSnapshot.Get(name));
 		}
 	}
 }
