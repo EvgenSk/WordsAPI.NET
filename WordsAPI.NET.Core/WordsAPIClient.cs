@@ -39,7 +39,7 @@ namespace WordsAPI.NET.Core
 		}
 	}
 
-	public class WordsAPIClientFactory
+	public static class WordsAPIClientFactory
 	{
 		public static WordsAPIClient Create(IServiceProvider services)
 		{

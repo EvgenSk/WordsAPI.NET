@@ -5,6 +5,7 @@ using Orleans.Providers;
 using Orleans.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using WordsAPI.NET.Core;
 
@@ -32,7 +33,10 @@ namespace Orleans.Hosting
         public static IServiceCollection AddWordsAPIClient(this IServiceCollection services, Action<OptionsBuilder<WordsAPIOptions>> configureOptions = null)
         {
             configureOptions?.Invoke(services.AddOptions<WordsAPIOptions>());
-            return services.AddSingleton(WordsAPIClientFactory.Create);
+            return
+                services
+                .AddScoped<HttpClient>()
+                .AddSingleton(WordsAPIClientFactory.Create);
         }
     }
 }

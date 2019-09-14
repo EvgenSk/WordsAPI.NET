@@ -49,13 +49,15 @@ namespace WordsAPI.NET.Core
 		public static WordsAPIHttpService Create(IServiceProvider services)
 		{
 			IOptionsSnapshot<WordsAPIOptions> optionsSnapshot = services.GetRequiredService<IOptionsSnapshot<WordsAPIOptions>>();
-			return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, optionsSnapshot);
+            HttpClient httpClient = services.GetRequiredService<HttpClient>();
+			return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, httpClient, optionsSnapshot);
 		}
 
 		public static WordsAPIHttpService Create(IServiceProvider services, string name)
 		{
 			IOptionsSnapshot<WordsAPIOptions> optionsSnapshot = services.GetRequiredService<IOptionsSnapshot<WordsAPIOptions>>();
-			return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, optionsSnapshot.Get(name));
+            HttpClient httpClient = services.GetRequiredService<HttpClient>();
+            return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, httpClient, optionsSnapshot.Get(name));
 		}
 	}
 }
