@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using WordsAPI.NET.Core;
+using WordsAPI.NET.OrleansHostingExtensions;
 
 namespace Orleans.Hosting
 {
@@ -35,8 +36,26 @@ namespace Orleans.Hosting
             configureOptions?.Invoke(services.AddOptions<WordsAPIOptions>());
             return
                 services
-                .AddScoped<HttpClient>()
-                .AddSingleton(WordsAPIClientFactory.Create);
+                .AddSingleton<WordsAPIHttpService>()
+                .AddSingleton<WordsAPIClient>();
         }
+
+        public static ISiloHostBuilder AddWordsAPIGrainService(this ISiloHostBuilder builder, Action<OptionsBuilder<WordsAPIOptions>> configureOptions = null)
+        {
+            return
+                builder
+                .AddGrainService<WordsAPIGrainService>()
+                .ConfigureServices(services =>
+                {
+                    configureOptions?.Invoke(services.AddOptions<WordsAPIOptions>());
+                    services
+                    .AddSingleton<IWordsAPIClient, WordsAPIClient>()
+                    .AddSingleton<IWordsAPIGrainService, WordsAPIGrainService>()
+                    .AddSingleton<IWordsAPIGrainServiceClient, WordsAPIGrainServiceClient>();
+                });
+        }
+
+        public static ISiloHostBuilder AddWordsAPIGrainService(this ISiloHostBuilder builder, Action<WordsAPIOptions> configureOptions = null) =>
+            builder.AddWordsAPIGrainService(ob => ob.Configure(configureOptions ?? dummy));
     }
 }

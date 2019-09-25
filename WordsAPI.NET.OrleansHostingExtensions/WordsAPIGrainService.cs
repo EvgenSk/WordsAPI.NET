@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Concurrency;
 using Orleans.Core;
@@ -14,14 +15,12 @@ namespace WordsAPI.NET.OrleansHostingExtensions
     [Reentrant]
     public class WordsAPIGrainService : GrainService, IWordsAPIGrainService
     {
-        readonly IGrainFactory GrainFactory;
-        readonly WordsAPIClient Client;
+        private readonly IWordsAPIClient Client;
 
-        public WordsAPIGrainService(IServiceProvider services, IGrainIdentity id, Silo silo, ILoggerFactory loggerFactory, IGrainFactory grainFactory) 
+        public WordsAPIGrainService(IWordsAPIClient client, IGrainIdentity id, Silo silo, ILoggerFactory loggerFactory)
             : base(id, silo, loggerFactory)
         {
-            GrainFactory = grainFactory;
-            Client = WordsAPIClientFactory.Create(services);
+            Client = client;
         }
 
         public Task<string> GetWordInfoAsync(string word, Endpoint endpoint = Endpoint.Everything) =>
