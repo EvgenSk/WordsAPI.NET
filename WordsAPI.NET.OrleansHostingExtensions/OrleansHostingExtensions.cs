@@ -40,7 +40,7 @@ namespace Orleans.Hosting
                 .AddSingleton<WordsAPIClient>();
         }
 
-        public static ISiloHostBuilder AddWordsAPIGrainService(this ISiloHostBuilder builder, Action<OptionsBuilder<WordsAPIOptions>> configureOptions = null)
+        public static ISiloHostBuilder AddWordsAPIGrainService(this ISiloHostBuilder builder, Action<OptionsBuilder<WordsAPIOptions>> configureOptions)
         {
             return
                 builder
