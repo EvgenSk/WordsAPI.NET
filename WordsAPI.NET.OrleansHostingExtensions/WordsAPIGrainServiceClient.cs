@@ -9,7 +9,7 @@ namespace WordsAPI.NET.OrleansHostingExtensions
 {
     public class WordsAPIGrainServiceClient : GrainServiceClient<IWordsAPIGrainService>, IWordsAPIGrainServiceClient
     {
-        protected WordsAPIGrainServiceClient(IServiceProvider serviceProvider) 
+        public WordsAPIGrainServiceClient(IServiceProvider serviceProvider)
             : base(serviceProvider)
         {
         }
