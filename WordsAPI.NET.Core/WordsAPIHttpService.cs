@@ -10,15 +10,13 @@ namespace WordsAPI.NET.Core
 {
     public class WordsAPIHttpService
     {
-        public HttpClient Client { get; }
+        public HttpClient Client { get; } = new HttpClient();
 
-        public WordsAPIHttpService(HttpClient client, WordsAPIOptions options)
+        public WordsAPIHttpService(IOptions<WordsAPIOptions> options)
         {
-            client.BaseAddress = new Uri(options.BaseURL);
-            client.DefaultRequestHeaders.Add("X-RapidAPI-Host", options.RapidAPIHost);
-            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", options.RapidAPIKey);
-
-            Client = client;
+            Client.BaseAddress = new Uri(options.Value.BaseURL);
+            Client.DefaultRequestHeaders.Add("X-RapidAPI-Host", options.Value.RapidAPIHost);
+            Client.DefaultRequestHeaders.Add("X-RapidAPI-Key", options.Value.RapidAPIKey);
         }
 
         public Task<string> GetWordInfoRawString(Endpoint endpoint, string word) =>
@@ -55,7 +53,7 @@ namespace WordsAPI.NET.Core
 		public static WordsAPIHttpService Create(IServiceProvider services, string name)
 		{
 			IOptionsSnapshot<WordsAPIOptions> optionsSnapshot = services.GetRequiredService<IOptionsSnapshot<WordsAPIOptions>>();
-			return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, optionsSnapshot.Get(name));
+            return ActivatorUtilities.CreateInstance<WordsAPIHttpService>(services, optionsSnapshot.Get(name));
 		}
 	}
 }

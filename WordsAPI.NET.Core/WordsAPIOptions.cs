@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace WordsAPI.NET.Core
 {
-    public class WordsAPIOptions
+    public class WordsAPIOptions : IOptions<WordsAPIOptions>
     {
         /// <summary>
         /// Default is "https://wordsapiv1.p.rapidapi.com"
@@ -20,5 +21,7 @@ namespace WordsAPI.NET.Core
         /// You should use your key here
         /// </summary>
         public string RapidAPIKey { get; set; }
+
+        WordsAPIOptions IOptions<WordsAPIOptions>.Value => this;
     }
 }
