@@ -7,9 +7,9 @@ using WordsAPI.NET.Core;
 
 namespace WordsAPI.NET.OrleansHostingExtensions
 {
-    public interface IWordsAPIGrainService : IGrainService
-    {
-        Task<string> GetWordInfoAsync(string word, Endpoint endpoint = Endpoint.Everything);
-        Task<T> GetWordInfoAsync<T>(string word, Endpoint endpoint = Endpoint.Everything);
-    }
+	public interface IWordsAPIGrainService : IGrainService
+	{
+		Task<string> GetWordInfoAsync(string word, Endpoint endpoint = Endpoint.Everything);
+		Task<T> GetWordInfoAsync<T>(string word, Endpoint endpoint = Endpoint.Everything);
+	}
 }

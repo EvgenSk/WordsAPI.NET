@@ -5,23 +5,23 @@ using System.Text;
 
 namespace WordsAPI.NET.Core
 {
-    public class WordsAPIOptions : IOptions<WordsAPIOptions>
-    {
-        /// <summary>
-        /// Default is "https://wordsapiv1.p.rapidapi.com"
-        /// </summary>
-        public string BaseURL { get; set; } = "https://wordsapiv1.p.rapidapi.com";
+	public class WordsAPIOptions : IOptions<WordsAPIOptions>
+	{
+		/// <summary>
+		/// Default is "https://wordsapiv1.p.rapidapi.com"
+		/// </summary>
+		public string BaseURL { get; set; } = "https://wordsapiv1.p.rapidapi.com";
 
-        /// <summary>
-        /// Default is "wordsapiv1.p.rapidapi.com"
-        /// </summary>
-        public string RapidAPIHost { get; set; } = "wordsapiv1.p.rapidapi.com";
+		/// <summary>
+		/// Default is "wordsapiv1.p.rapidapi.com"
+		/// </summary>
+		public string RapidAPIHost { get; set; } = "wordsapiv1.p.rapidapi.com";
 
-        /// <summary>
-        /// You should use your key here
-        /// </summary>
-        public string RapidAPIKey { get; set; }
+		/// <summary>
+		/// You should use your key here
+		/// </summary>
+		public string RapidAPIKey { get; set; }
 
-        WordsAPIOptions IOptions<WordsAPIOptions>.Value => this;
-    }
+		WordsAPIOptions IOptions<WordsAPIOptions>.Value => this;
+	}
 }

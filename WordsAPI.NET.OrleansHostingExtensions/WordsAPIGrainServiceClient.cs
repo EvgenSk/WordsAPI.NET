@@ -7,17 +7,17 @@ using WordsAPI.NET.Core;
 
 namespace WordsAPI.NET.OrleansHostingExtensions
 {
-    public class WordsAPIGrainServiceClient : GrainServiceClient<IWordsAPIGrainService>, IWordsAPIGrainServiceClient
-    {
-        public WordsAPIGrainServiceClient(IServiceProvider serviceProvider)
-            : base(serviceProvider)
-        {
-        }
+	public class WordsAPIGrainServiceClient : GrainServiceClient<IWordsAPIGrainService>, IWordsAPIGrainServiceClient
+	{
+		public WordsAPIGrainServiceClient(IServiceProvider serviceProvider)
+			: base(serviceProvider)
+		{
+		}
 
-        public Task<string> GetWordInfoAsync(string word, Endpoint endpoint = Endpoint.Everything) =>
-            GrainService.GetWordInfoAsync(word, endpoint);
+		public Task<string> GetWordInfoAsync(string word, Endpoint endpoint = Endpoint.Everything) =>
+			GrainService.GetWordInfoAsync(word, endpoint);
 
-        public Task<T> GetWordInfoAsync<T>(string word, Endpoint endpoint = Endpoint.Everything) =>
-            GrainService.GetWordInfoAsync<T>(word, endpoint);
-    }
+		public Task<T> GetWordInfoAsync<T>(string word, Endpoint endpoint = Endpoint.Everything) =>
+			GrainService.GetWordInfoAsync<T>(word, endpoint);
+	}
 }

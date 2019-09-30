@@ -12,21 +12,21 @@ using WordsAPI.NET.Core;
 
 namespace WordsAPI.NET.OrleansHostingExtensions
 {
-    [Reentrant]
-    public class WordsAPIGrainService : GrainService, IWordsAPIGrainService
-    {
-        private readonly IWordsAPIClient Client;
+	[Reentrant]
+	public class WordsAPIGrainService : GrainService, IWordsAPIGrainService
+	{
+		private readonly IWordsAPIClient Client;
 
-        public WordsAPIGrainService(IWordsAPIClient client, IGrainIdentity id, Silo silo, ILoggerFactory loggerFactory)
-            : base(id, silo, loggerFactory)
-        {
-            Client = client;
-        }
+		public WordsAPIGrainService(IWordsAPIClient client, IGrainIdentity id, Silo silo, ILoggerFactory loggerFactory)
+			: base(id, silo, loggerFactory)
+		{
+			Client = client;
+		}
 
-        public Task<string> GetWordInfoAsync(string word, Endpoint endpoint = Endpoint.Everything) =>
-            Client.GetWordInfoAsync(word, endpoint);
+		public Task<string> GetWordInfoAsync(string word, Endpoint endpoint = Endpoint.Everything) =>
+			Client.GetWordInfoAsync(word, endpoint);
 
-        public Task<T> GetWordInfoAsync<T>(string word, Endpoint endpoint = Endpoint.Everything) =>
-            Client.GetWordInfoAsync<T>(word, endpoint);
-    }
+		public Task<T> GetWordInfoAsync<T>(string word, Endpoint endpoint = Endpoint.Everything) =>
+			Client.GetWordInfoAsync<T>(word, endpoint);
+	}
 }

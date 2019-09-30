@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WordsAPI.NET.OrleansHostingExtensions
 {
-    public interface IWordsAPIGrainServiceClient : IGrainServiceClient<IWordsAPIGrainService>, IWordsAPIGrainService
-    {
-    }
+	public interface IWordsAPIGrainServiceClient : IGrainServiceClient<IWordsAPIGrainService>, IWordsAPIGrainService
+	{
+	}
 }
