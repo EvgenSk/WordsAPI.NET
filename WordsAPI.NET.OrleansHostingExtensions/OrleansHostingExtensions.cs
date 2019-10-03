@@ -49,6 +49,7 @@ namespace Orleans.Hosting
 				{
 					configureOptions?.Invoke(services.AddOptions<WordsAPIOptions>());
 					services
+					.AddSingleton<WordsAPIHttpService>()
 					.AddSingleton<IWordsAPIClient, WordsAPIClient>()
 					.AddSingleton<IWordsAPIGrainService, WordsAPIGrainService>()
 					.AddSingleton<IWordsAPIGrainServiceClient, WordsAPIGrainServiceClient>();
