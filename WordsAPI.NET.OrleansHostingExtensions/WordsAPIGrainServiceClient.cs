@@ -9,15 +9,18 @@ namespace WordsAPI.NET.OrleansHostingExtensions
 {
 	public class WordsAPIGrainServiceClient : GrainServiceClient<IWordsAPIGrainService>, IWordsAPIGrainServiceClient
 	{
-		public WordsAPIGrainServiceClient(IServiceProvider serviceProvider)
+		private readonly IWordsAPIClient client;
+
+		public WordsAPIGrainServiceClient(IServiceProvider serviceProvider, IWordsAPIClient client)
 			: base(serviceProvider)
 		{
+			this.client = client;
 		}
 
 		public Task<string> GetWordInfoAsync(string word, Endpoint endpoint = Endpoint.Everything) =>
-			GrainService.GetWordInfoAsync(word, endpoint);
+			client.GetWordInfoAsync(word, endpoint);
 
 		public Task<T> GetWordInfoAsync<T>(string word, Endpoint endpoint = Endpoint.Everything) =>
-			GrainService.GetWordInfoAsync<T>(word, endpoint);
+			client.GetWordInfoAsync<T>(word, endpoint);
 	}
 }

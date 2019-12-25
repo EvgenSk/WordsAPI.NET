@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLP.API.Core.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,7 +17,7 @@ namespace WordsAPI.NET.Core.Types
 	public class Result
 	{
 		public string Definition { get; set; }
-		public string PartOfSpeech { get; set; }
+		public PartOfSpeech? PartOfSpeech { get; set; }
 		public List<string> Synonyms { get; set; }
 		public List<string> TypeOf { get; set; }
 		public List<string> HasTypes { get; set; }
