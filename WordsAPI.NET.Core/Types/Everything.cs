@@ -1,5 +1,4 @@
-﻿using NLP.API.Core.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -35,5 +34,17 @@ namespace WordsAPI.NET.Core.Types
 	{
 		public static implicit operator Pronunciation(string all) => new Pronunciation() { All = all };
 		public string All { get; set; }
+	}
+
+	public enum PartOfSpeech
+	{
+		noun,
+		pronoun,
+		verb,
+		adjective,
+		adverb,
+		preposition,
+		conjunction,
+		interjection
 	}
 }
