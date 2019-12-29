@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,6 +11,13 @@ namespace WordsAPI.NET.Core
 {
 	public class WordsAPIClient : IWordsAPIClient
 	{
+		private static JsonSerializerSettings jsonSerializerSettings =
+			new JsonSerializerSettings
+			{
+				Converters = new List<JsonConverter> { new StringEnumConverter() },
+				MissingMemberHandling = MissingMemberHandling.Ignore
+			};
+
 		WordsAPIHttpService WordsAPIHttpService { get; }
 
 		public WordsAPIClient(WordsAPIHttpService service)
@@ -34,8 +42,15 @@ namespace WordsAPI.NET.Core
 		/// <returns>Task with specific type in it</returns>
 		public async Task<T> GetWordInfoAsync<T>(string word, Endpoint endpoint = Endpoint.Everything)
 		{
-			string rawString = await WordsAPIHttpService.GetWordInfoRawString(endpoint, word);
-			return JsonConvert.DeserializeObject<T>(rawString);
+			try
+			{
+				string rawString = await WordsAPIHttpService.GetWordInfoRawString(endpoint, word);
+				return JsonConvert.DeserializeObject<T>(rawString, jsonSerializerSettings);
+			}
+			catch(Exception ex) // TODO: add logging
+			{
+				return default;
+			}
 		}
 	}
 

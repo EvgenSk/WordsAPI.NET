@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace WordsAPI.NET.Core.Types
@@ -45,6 +46,12 @@ namespace WordsAPI.NET.Core.Types
 		adverb,
 		preposition,
 		conjunction,
-		interjection
+		interjection,
+
+		[EnumMember(Value = "definite article")]
+		definite_article,
+
+		[EnumMember(Value = "indefinite article")]
+		indefinite_article
 	}
 }
