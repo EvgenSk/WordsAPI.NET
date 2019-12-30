@@ -15,7 +15,6 @@ namespace WordsAPI.NET.Core
 			new JsonSerializerSettings
 			{
 				Converters = new List<JsonConverter> { new StringEnumConverter() },
-				MissingMemberHandling = MissingMemberHandling.Ignore
 			};
 
 		WordsAPIHttpService WordsAPIHttpService { get; }
